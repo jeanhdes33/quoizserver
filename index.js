@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const cookieParser = require('cookie-parser');
+const { METHODS } = require('http');
 
 dotenv.config();
 
@@ -12,9 +13,15 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
   .catch((err) => console.error('DB not connected', err));
 
 const corsOptions = {
+  
+  origin: 'https://quoiz.vercel.app/' // Autorise les requêtes depuis ce domaine
   credentials: true,
-  origin: 'http://localhost:3000' // Autorise les requêtes depuis ce domaine
+  methods: ["POST", "GET"],
 };
+
+app.get("/", (req, res) => {
+  res.json("Hello");
+})
 
 app.use(cors(corsOptions));
 app.use(express.json());
