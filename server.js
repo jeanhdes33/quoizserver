@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
   .catch((err) => console.error('DB not connected', err));
 
 const corsOptions = {
-  origin: ["https://quoiz.vercel.app/"],
+  origin: ["https://quoiz.vercel.app"],
   methods: ["POST", "GET"],
   credentials: true
 }
